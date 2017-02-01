@@ -33,17 +33,30 @@ double f1_score(unordered_map<int, double> *y_true, unordered_map<int, double> *
     for(int i = 0; i < size; i++) {
         
         idx = ind[i]; 
-        if((*y_true)[idx] == 1) {
-            if((*y_pred)[idx] == 1) tp++;
-            else fn++;
+        if((*y_pred).count(idx)) {
+            if((*y_pred)[idx] == 1 || (*y_pred)[idx] == 0) {
+                if((*y_true)[idx] == 1) {
+                    if((*y_pred)[idx] == 1) tp++;
+                    else fn++;
+                } else {
+                    if((*y_pred)[idx] == 1) fp++;
+                }
+            } else {
+                cout << "Wrong prediction: " << (*y_pred)[idx] << endl;
+                throw "Wrong prediction";
+            }
         } else {
-            if((*y_pred)[idx] == 1) fp++;
+                cout << "Index does not exist: " << idx << endl;
+                throw  "Index does not exist";
         }
     }
     
     recall = tp / (tp + fn);
-    precision = tp / (tp + fp);
-    
+    if( tp != 0) {
+        precision = tp / (tp + fp);
+    } else {
+        precision = 1;
+    }
     
     return 2 * recall * precision / (recall + precision);
 }
