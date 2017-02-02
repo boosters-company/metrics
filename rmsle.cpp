@@ -4,8 +4,7 @@
 
 int SIZE;
 
-void read_data_csv(string path, unordered_map<int, double> *data);
-int* read_indexes(string path);
+
 double rmsle(unordered_map<int, double> *y_true, unordered_map<int, double> *y_pred, int *ind, int size);
 
 int main(int argc, char* argv[]) {
@@ -17,7 +16,7 @@ int main(int argc, char* argv[]) {
     read_data_csv(string(argv[2]), &table2);
     ind = read_indexes(string(argv[3]));
     
-    cout << rmsle(&table1, &table2, ind, SIZE);
+    cout << "answer: " << rmsle(&table1, &table2, ind, SIZE) << endl;
     
     delete ind, table1, table2;
     return 0;
@@ -29,9 +28,21 @@ double rmsle(unordered_map<int, double> *y_true, unordered_map<int, double> *y_p
     int idx;
     for(int i = 0; i < size; i++) {
         idx = ind[i];
-        tmp = log((*y_true)[idx] + 1) - log((*y_pred)[idx] + 1);
-        tmp *= tmp;
-        sum += tmp / size;
+        if((*y_pred).count(idx)) {
+            if((*y_pred)[idx] > 0) {
+                
+                tmp = log((*y_true)[idx] + 1) - log((*y_pred)[idx] + 1);
+                tmp *= tmp;
+                sum += tmp / size;
+                
+            } else {
+                cout << "Negative number: " << (*y_pred)[idx] << endl;
+            }
+            
+        } else {
+            cout << "Index does not exist: " << idx << endl;
+            throw "Wrong index";
+        }
     }
     
     return sqrt(sum);

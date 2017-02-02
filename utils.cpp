@@ -16,22 +16,49 @@ void read_data_csv(string path, unordered_map<int, double> *data) {
         in >> line;
         
         stringstream line_stream(line);
-        
         while(getline(line_stream, cell, ',')) {
             
-            if(cell.empty()) {
-                throw "Empty cell";
-            }
             if(state % 2 == 0) {
+                try {
                 ind = stoi(cell);
+                } catch(const invalid_argument& ia) {
+                    
+                    cout << "Invalid argumaent: " << cell << endl ;
+                    throw "Invalid argumaent";
+                    
+                } catch(const out_of_range& oor) {
+                    
+                    cout << "Out of range: " << cell << endl;
+                    throw "Out of range";
+                    
+                }
             } else {
+                try {
                 val = stod(cell);
+                } catch(const invalid_argument& ia) {
+                    
+                    cout << "Invalid argumaent: " << cell << endl ;
+                    throw "Invalid argumaent";
+                    
+                } catch(const out_of_range& oor) {
+                    
+                    cout << "Out of range: " << cell << endl;
+                    throw "Invalid argumaent";
+                    
+                }
                 (*data)[ind] = val;
             }
             
             state++;
             
         }
+        
+        if(cell.empty() && !line_stream) {
+            
+                cout<<"Empty cell"<<endl;
+                throw "Empty cell";
+                
+            }
     }
     
     in.close();
