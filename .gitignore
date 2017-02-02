@@ -2,3 +2,5 @@
 *.o
 *.txt
 tmp
+f1
+rmsle
