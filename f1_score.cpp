@@ -1,6 +1,4 @@
-
 #include "utils.h"
-#include <chrono>
 
 using namespace std::chrono;
 int SIZE;
@@ -64,4 +62,3 @@ double f1_score(unordered_map<int, double> *y_true, unordered_map<int, double> *
     
     return 2 * recall * precision / (recall + precision);
 }
-

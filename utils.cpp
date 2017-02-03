@@ -1,8 +1,8 @@
-
 #include "utils.h"
 extern int SIZE;
 void read_data_csv(string path, unordered_map<int, double> *data) {
     
+    char delim;
     ifstream in;
     in.open(path, ifstream::in);
     
@@ -11,12 +11,16 @@ void read_data_csv(string path, unordered_map<int, double> *data) {
     int ind;
     double val;
     
+    if(line.find(',') != string::npos) delim = ',';
+    if(line.find(';') != string::npos) delim = ';';
+    
     int state = 0;
     while(!in.eof()) {
         in >> line;
         
+        
         stringstream line_stream(line);
-        while(getline(line_stream, cell, ',')) {
+        while(getline(line_stream, cell, delim)) {
             
             if(state % 2 == 0) {
                 try {
