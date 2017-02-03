@@ -1,13 +1,15 @@
 
 #include "utils.h"
+#include <chrono>
 
-
+using namespace std::chrono;
 int SIZE;
 
 
 double f1_score(unordered_map<int, double> *y_true, unordered_map<int, double> *y_pred, int *ind, int size);
 
 int main(int argc, char* argv[]) {
+    std::ios_base::sync_with_stdio (false);
     
     int *ind;
     unordered_map<int, double> table1, table2;
@@ -16,7 +18,9 @@ int main(int argc, char* argv[]) {
     read_data_csv(string(argv[2]), &table2);
     ind = read_indexes(string(argv[3]));
     
-    cout << "answer: " << f1_score(&table1, &table2, ind, SIZE) << endl;
+    double f1 = f1_score(&table1, &table2, ind, SIZE);
+    
+    cout << "answer: " << f1 << endl;
     
     delete ind, table1, table2;
     return 0;

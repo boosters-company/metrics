@@ -1,5 +1,5 @@
 CC=g++
-FLAGS=-std=c++0x -c
+FLAGS=-std=c++0x -c -O3
 
 all: rmsle f1
 
