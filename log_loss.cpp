@@ -5,7 +5,7 @@
 int SIZE;
 
 
-double rmsle(unordered_map<int, double> *y_true, unordered_map<int, double> *y_pred, int *ind, int size);
+double log_loss(unordered_map<int, double> *y_true, unordered_map<int, double> *y_pred, int *ind, int size);
 
 int main(int argc, char* argv[]) {
     
@@ -29,9 +29,10 @@ double log_loss(unordered_map<int, double> *y_true, unordered_map<int, double> *
     for(int i = 0; i < size; i++) {
         idx = ind[i];
         if((*y_pred).count(idx)) {
-            if((*y_pred)[idx] > 0 && (*y_pred)[idx] < 1) {
-                y_maxed = fmax(fmin((*y_pred)[idx], 1-10e-15), 10e-15);
+            if((*y_pred)[idx] >= 0) {
+                y_maxed = (*y_pred)[idx];
                 tmp = -(*y_true)[idx]*log(y_maxed) - (1 - (*y_true)[idx])*log(1-y_maxed);
+                
                 sum += tmp / size;
                 
             } else {

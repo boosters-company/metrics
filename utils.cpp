@@ -12,6 +12,7 @@ void read_data_csv(string path, unordered_map<int, double> *data) {
     double val;
 
     if(line.find(',') != string::npos) delim = ',';
+    if(line.find('\t') != string::npos) delim = '\t';
     if(line.find(';') != string::npos) delim = ';';
 
     int state = 0;
