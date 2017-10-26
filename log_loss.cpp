@@ -25,12 +25,14 @@ int main(int argc, char* argv[]) {
 
 double log_loss(unordered_map<int, double> *y_true, unordered_map<int, double> *y_pred, int *ind, int size) {
     double tmp, y_maxed, sum = 0;
+    double eps = 10e-15;
     int idx;
     for(int i = 0; i < size; i++) {
         idx = ind[i];
         if((*y_pred).count(idx)) {
             if((*y_pred)[idx] >= 0) {
                 y_maxed = (*y_pred)[idx];
+                y_maxed = max(min(y_maxed, 1-eps), eps);
                 tmp = -(*y_true)[idx]*log(y_maxed) - (1 - (*y_true)[idx])*log(1-y_maxed);
                 
                 sum += tmp / size;
