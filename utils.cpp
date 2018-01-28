@@ -69,6 +69,86 @@ void read_data_csv(string path, unordered_map<int, double> *data) {
     in.close();
 }
 
+void read_data_coord(string path, unordered_map<string, coord> *data) {
+ 
+    char delim;
+    ifstream in;
+    in.open(path, ifstream::in);
+
+    string line, cell;
+    in >> line;
+    string ind;
+    double x, y;
+    if(line.find(',') != string::npos) delim = ',';
+    if(line.find('\t') != string::npos) delim = '\t';
+    if(line.find(';') != string::npos) delim = ';';
+
+    int state = 0;
+    while(!in.eof()) {
+        in >> line;
+        stringstream line_stream(line);
+        while(getline(line_stream, cell, delim)) {
+            if(state % 3 == 0) {
+                try {
+                ind = cell;
+                } catch(const invalid_argument& ia) {
+
+                    cout << "error:Invalid argumaent: " << cell << endl ;
+                    throw "error:Invalid argumaent";
+
+                } catch(const out_of_range& oor) {
+
+                    cout << "error:Out of range: " << cell << endl;
+                    throw "error:Out of range";
+
+                }
+            } else if(state % 3 == 1) {
+                try {
+                x = stod(cell);
+                } catch(const invalid_argument& ia) {
+
+                    cout << "error:Invalid argumaent: " << cell << endl ;
+                    throw "error:Invalid argumaent";
+
+                } catch(const out_of_range& oor) {
+
+                    cout << "error:Out of range: " << cell << endl;
+                    throw "error:Invalid argumaent";
+                    
+                }
+                (*data)[ind].lat = x;
+            } else {
+                try {
+                y = stod(cell);
+                } catch(const invalid_argument& ia) {
+
+                    cout << "error:Invalid argumaent: " << cell << endl ;
+                    throw "error:Invalid argumaent";
+
+                } catch(const out_of_range& oor) {
+
+                    cout << "error:Out of range: " << cell << endl;
+                    throw "error:Invalid argumaent";
+                    
+                }
+                (*data)[ind].lon = y;
+            }
+
+            state++;
+
+        }
+
+        if(cell.empty() && !line_stream) {
+
+                cout<<"error:Empty cell"<<endl;
+                throw "error:Empty cell";
+
+            }
+    }
+
+    in.close();
+}
+
 int* read_indexes(string path) {
     ifstream in;
     in.open(path, ifstream::in);
@@ -76,6 +156,25 @@ int* read_indexes(string path) {
     int *ind;
     in >> size;
     ind = new int[size];
+
+    for(int i = 0; i < size; i++) {
+        in >> ind[i];
+    }
+
+
+    in.close();
+
+    SIZE = size;
+    return ind;
+}
+
+string* read_indexes_coords(string path) {
+    ifstream in;
+    in.open(path, ifstream::in);
+    int size, i = 0;
+    string *ind;
+    in >> size;
+    ind = new string[size];
 
     for(int i = 0; i < size; i++) {
         in >> ind[i];
