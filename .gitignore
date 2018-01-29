@@ -1,8 +1,13 @@
+# Ignore all
+*
+# Unignore all with extensions
+!*.*
+# Unignore all dirs
+!*/
+
 *.tsc
 *.csv
 *.o
 *.txt
 tmp
-f1
-rmsle
 tests
