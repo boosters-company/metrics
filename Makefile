@@ -1,7 +1,7 @@
 CC=g++
 FLAGS=-std=c++0x -c -O3
 
-all: rmsle f1 accuracy log_loss hit
+all: rmsle f1 accuracy log_loss hit hit_2
 
 
 log_loss: log_loss.o utils.o
@@ -15,6 +15,12 @@ hit: hit.o utils.o
 
 hit.o: hit.cpp
 	$(CC) $(FLAGS) hit.cpp
+
+hit_2: hit_2.o utils.o
+	$(CC) hit_2.o utils.o -o hit_2
+
+hit_2.o: hit_2.cpp
+	$(CC) $(FLAGS) hit_2.cpp
 
 rmsle: rmsle.o utils.o
 	$(CC) rmsle.o utils.o -o rmsle

@@ -14,6 +14,7 @@ struct coord {
 
 void read_data_csv(string path, unordered_map<int, double> *data);
 void read_data_coord(string path, unordered_map<string, coord> *data);
+void read_data_coord_2(string path, unordered_map<string, coord> *data1, unordered_map<string, coord> *data2);
 int* read_indexes(string path);
 string* read_indexes_coords(string path);
 
