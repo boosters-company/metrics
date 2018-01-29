@@ -9,14 +9,14 @@ int main(int argc, char* argv[]) {
     std::ios_base::sync_with_stdio (false);
 
     string *ind;
-    unordered_map<string, coord> table1, table2, table3;
+    unordered_map<string, coord> table_1_1, table_1_2, table_2_1, table_2_2;
 
-    read_data_coord(string(argv[1]), &table1);
-    read_data_coord_2(string(argv[2]), &table2, &table3);
+    read_data_coord_2(string(argv[2]), &table_1_1, &table_1_2);
+    read_data_coord_2(string(argv[2]), &table_2_1, &table_2_2);
     ind = read_indexes_coords(string(argv[3]));
 
-    double score_1 = hit(&table1, &table2, ind, SIZE);
-    double score_2 = hit(&table1, &table3, ind, SIZE);
+    double score_1 = hit(&table_1_1, &table_1_2, ind, SIZE);
+    double score_2 = hit(&table_2_1, &table_2_2, ind, SIZE);
 
     cout << "ok:" << ((score_1 + score_2)/2.0) << endl;
 
