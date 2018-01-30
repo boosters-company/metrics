@@ -1,3 +1,5 @@
+#include <iostream>
+#include <unordered_map>
 #include "utils.h"
 #include "math.h"
 #define R 0.02
@@ -9,17 +11,15 @@ int main(int argc, char* argv[]) {
     std::ios_base::sync_with_stdio (false);
 
     string *ind;
-    unordered_map<string, coord> table_1_1, table_1_2, table_2_1, table_2_2;
+    unordered_map<string, coord> home_true, home_pred, work_true, work_pred;
 
-    read_data_coord_2(string(argv[2]), &table_1_1, &table_1_2);
-    read_data_coord_2(string(argv[2]), &table_2_1, &table_2_2);
+    read_data_coord_2(string(argv[1]), &home_true, &work_true);
+    read_data_coord_2(string(argv[2]), &home_pred, &work_pred);
     ind = read_indexes_coords(string(argv[3]));
 
-    double score_1 = hit(&table_1_1, &table_1_2, ind, SIZE);
-    double score_2 = hit(&table_2_1, &table_2_2, ind, SIZE);
-
+    double score_1 = hit(&home_true, &home_pred, ind, SIZE);
+    double score_2 = hit(&work_true, &work_pred, ind, SIZE);
     cout << "ok:" << ((score_1 + score_2)/2.0) << endl;
-
 
     return 0;
 }
@@ -51,4 +51,3 @@ double hit(unordered_map<string, coord> *y_true, unordered_map<string, coord> *y
 
     return acc;
 }
-
