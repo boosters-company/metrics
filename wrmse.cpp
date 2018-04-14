@@ -16,8 +16,9 @@ int main(int argc, char* argv[]) {
     read_data_csv(string(argv[2]), &table2);
     read_data_csv(string(argv[3]), &table3);
     ind = read_indexes(string(argv[4]));
+    std::cout.precision(10);
     
-    cout << "answer: " << wrmsle(&table1, &table2, &table3, ind, SIZE) << endl;
+    cout << "ok: " << wrmsle(&table1, &table2, &table3, ind, SIZE) << endl;
     
     delete ind, table1, table2;
     return 0;

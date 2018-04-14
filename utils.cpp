@@ -60,7 +60,7 @@ void read_data_csv(string path, unordered_map<int, double> *data) {
 
         if(cell.empty() && !line_stream) {
 
-                cout<<"error:Empty cell"<<endl;
+                cout<<"error:Empty cell "<< ind <<endl;
                 throw "error:Empty cell";
 
             }
