@@ -18,7 +18,7 @@ int main(int argc, char* argv[]) {
     ind = read_indexes(string(argv[4]));
     std::cout.precision(10);
     
-    cout << "ok: " << wrmsle(&table1, &table2, &table3, ind, SIZE) << endl;
+    cout << "ok:" << wrmsle(&table1, &table2, &table3, ind, SIZE) << endl;
     
     delete ind, table1, table2;
     return 0;
