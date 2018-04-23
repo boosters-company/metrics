@@ -1,7 +1,7 @@
 CC=g++
 FLAGS=-std=c++0x -c -O3
 
-all: rmsle f1 accuracy log_loss hit hit_2 wrmse
+all: rmsle f1 accuracy log_loss hit hit_2 wrmse roc_auc
 
 log_loss: log_loss.o utils.o
 	$(CC) log_loss.o utils.o -o log_loss
@@ -47,6 +47,12 @@ accuracy: accuracy.o utils.o
 
 accuracy.o: accuracy.cpp
 	$(CC) $(FLAGS) accuracy.cpp
+
+roc_auc: roc_auc.o utils.o
+	$(CC) roc_auc.o utils.o -o auc
+
+roc_auc.o: roc_auc.cpp
+	$(CC) $(FLAGS) roc_auc.cpp
 
 clean:
 	rm -rf *.o rmsle

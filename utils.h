@@ -5,6 +5,9 @@
 #include <string>
 #include <fstream>
 #include <stdexcept>
+#include <vector>
+#include <utility>
+#include <algorithm>
 
 using namespace std;
 
