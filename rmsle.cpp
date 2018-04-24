@@ -16,7 +16,7 @@ int main(int argc, char* argv[]) {
     read_data_csv(string(argv[2]), &table2);
     ind = read_indexes(string(argv[3]));
     
-    cout << "answer: " << rmsle(&table1, &table2, ind, SIZE) << endl;
+    cout << "ok:" << rmsle(&table1, &table2, ind, SIZE) << endl;
     
     delete ind, table1, table2;
     return 0;
