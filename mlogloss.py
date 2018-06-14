@@ -22,6 +22,8 @@ def mlogloss(true_file="./input/test_target.csv", pred_file="./input/sample_subm
     return log_loss(np.array(y_true.iloc[indicies]), np.array(y_pred.iloc[indicies]))
 
 def __main__():
-    print(mlogloss(sys.argv[1], sys.argv[2], sys.argv[3]))
-
+    try:
+        print('ok:', mlogloss(sys.argv[1], sys.argv[2], sys.argv[3]))
+    except:
+        print('err: Ошибка')
 __main__()
