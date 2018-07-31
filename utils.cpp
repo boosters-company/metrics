@@ -69,6 +69,63 @@ void read_data_csv(string path, unordered_map<int, double> *data) {
     in.close();
 }
 
+void read_mapping(string path, unordered_map<string, double> *data) {
+
+    char delim;
+    ifstream in;
+    in.open(path, ifstream::in);
+
+    string line, cell;
+    in >> line;
+    string ind;
+    double val;
+
+    if(line.find(',') != string::npos) delim = ',';
+    if(line.find('\t') != string::npos) delim = '\t';
+    if(line.find(';') != string::npos) delim = ';';
+
+    int state = 0;
+    while(!in.eof()) {
+        in >> line;
+
+
+        stringstream line_stream(line);
+        while(getline(line_stream, cell, delim)) {
+
+            if(state % 2 == 0) {
+                ind = cell;
+            } else {
+                try {
+                val = stoi(cell);
+                } catch(const invalid_argument& ia) {
+
+                    cout << "error:Invalid argumaent: " << cell << endl ;
+                    throw "error:Invalid argumaent";
+
+                } catch(const out_of_range& oor) {
+
+                    cout << "error:Out of range: " << cell << endl;
+                    throw "error:Invalid argumaent";
+
+                }
+                (*data)[ind] = val;
+            }
+
+            state++;
+
+        }
+
+        if(cell.empty() && !line_stream) {
+
+                cout<<"error:Empty cell "<< ind <<endl;
+                throw "error:Empty cell";
+
+            }
+    }
+
+    in.close();
+}
+
 void read_data_coord(string path, unordered_map<string, coord> *data) {
 
     char delim;

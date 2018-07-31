@@ -1,5 +1,5 @@
 CC=g++
-FLAGS=-std=c++0x -c -O3
+FLAGS=-std=c++11 -c -O3
 
 all: rmsle f1 accuracy log_loss hit hit_2 wrmse roc_auc balanced_accuracy
 
