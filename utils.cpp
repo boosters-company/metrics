@@ -96,7 +96,7 @@ void read_mapping(string path, unordered_map<string, double> *data) {
                 ind = cell;
             } else {
                 try {
-                val = stoi(cell);
+                val = stod(cell);
                 } catch(const invalid_argument& ia) {
 
                     cout << "error:Invalid argumaent: " << cell << endl ;
@@ -352,4 +352,13 @@ string* read_indexes_coords(string path) {
 
     SIZE = size;
     return ind;
+}
+
+void map_data(unordered_map<string, double> mapping, unordered_map<string, double> table, unordered_map<int, double> *transformed) {
+    int idx;
+    double val;
+    for(auto it : table) {
+        idx = mapping[it.first];
+        (*transformed)[idx] = it.second;
+    }
 }

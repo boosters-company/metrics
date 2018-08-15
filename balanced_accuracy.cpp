@@ -5,13 +5,10 @@ int SIZE;
 
 double balanced_accuracy(unordered_map<int, double> *y_true, unordered_map<int, double> *y_pred, int *ind, int size);
 
-void map_data(unordered_map<string, double> mapping, unordered_map<string, double> table, unordered_map<int, double> *transformed);
-
 int main(int argc, char* argv[]) {
     std::ios_base::sync_with_stdio (false);
 
     int *ind;
-    int x;
     unordered_map<int, double> table1, transformed_table;
     unordered_map<string, double> mapping, table2;
 
@@ -22,9 +19,9 @@ int main(int argc, char* argv[]) {
     ind = read_indexes(string(argv[3]));
 
 
-    double f1 = balanced_accuracy(&table1, &transformed_table, ind, SIZE);
+    double ba = balanced_accuracy(&table1, &transformed_table, ind, SIZE);
 
-    cout << "ok:" << f1 << endl;
+    cout << "ok:" << ba << endl;
 
     delete ind, table1, table2;
     return 0;
@@ -62,13 +59,4 @@ double balanced_accuracy(unordered_map<int, double> *y_true, unordered_map<int, 
 
 
     return (tp/p + tn/n)/2.0;
-}
-
-void map_data(unordered_map<string, double> mapping, unordered_map<string, double> table, unordered_map<int, double> *transformed) {
-    int idx;
-    double val;
-    for(auto it : table) {
-        idx = mapping[it.first];
-        (*transformed)[idx] = it.second;
-    }
 }

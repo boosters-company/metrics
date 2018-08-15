@@ -21,6 +21,7 @@ void read_data_coord_2(string path, unordered_map<string, coord> *data1, unorder
 int* read_indexes(string path);
 string* read_indexes_coords(string path);
 void read_mapping(string path, unordered_map<string, double> *data);
+void map_data(unordered_map<string, double> mapping, unordered_map<string, double> table, unordered_map<int, double> *transformed);
 
 
 
