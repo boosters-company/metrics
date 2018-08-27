@@ -31,7 +31,7 @@ double rmape(unordered_map<int, double> *y_true, unordered_map<int, double> *y_p
         if((*y_pred).count(idx)) {
             if((*y_pred)[idx] >= 0) {
                 
-                tmp = abs((*y_true)[idx] - (*y_pred)[idx])/abs((*y_true)[idx]);
+                tmp = abs((*y_true)[idx] - (*y_pred)[idx])/abs((*y_true)[idx] + 0.1);
                 tmp *= tmp;
                 sum += tmp / size;
                 
