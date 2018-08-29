@@ -28,7 +28,7 @@ rmsle.o: rmsle.cpp
 	$(CC) $(FLAGS) rmsle.cpp
 
 rmape: rmape.o utils.o
-	$(CC) rmape.o utils.o -o rmsle
+	$(CC) rmape.o utils.o -o mape
 
 rmape.o: rmape.cpp
 	$(CC) $(FLAGS) rmape.cpp
