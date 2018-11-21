@@ -80,7 +80,8 @@ void read_mapping(string path, unordered_map<string, double> *data) {
     string ind;
     double val;
 
-    if(line.find(',') != string::npos) delim = ',';
+    if(line.find(',') != 
+    string::npos) delim = ',';
     if(line.find('\t') != string::npos) delim = '\t';
     if(line.find(';') != string::npos) delim = ';';
 

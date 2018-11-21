@@ -29,15 +29,15 @@ double rmse(unordered_map<int, double> *y_true, unordered_map<int, double> *y_pr
     for(int i = 0; i < size; i++) {
         idx = ind[i];
         if((*y_pred).count(idx)) {
-            if((*y_pred)[idx] >= 0) {
+            
                 
-                tmp = (*y_true)[idx] - (*y_pred)[idx];
-                tmp *= tmp;
-                sum += tmp / size;
+           tmp = (*y_true)[idx] - (*y_pred)[idx];
+           tmp *= tmp;
+           sum += tmp / size;
                 
-            } else {
-                cout << "Negative number: " << (*y_pred)[idx] << endl;
-            }
+            
+           //cout << "Negative number: " << (*y_pred)[idx] << endl;
+            
             
         } else {
             cout << "Index does not exist: " << idx << endl;
