@@ -23,7 +23,7 @@ def mlogloss(true_file="./input/test_target.csv", pred_file="./input/sample_subm
 
 def __main__():
     try:
-        print('ok:', mlogloss(sys.argv[1], sys.argv[2], sys.argv[3]))
-    except:
-        print('err: error')
+        print 'ok:' + str(mlogloss(sys.argv[1], sys.argv[2], sys.argv[3]))
+    except Exception,ex:
+        print 'err: ' + str(ex)
 __main__()
