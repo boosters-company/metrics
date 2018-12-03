@@ -25,5 +25,5 @@ def __main__():
     try:
         print('ok:', mlogloss(sys.argv[1], sys.argv[2], sys.argv[3]))
     except:
-        print('err: Ошибка')
+        print('err: error')
 __main__()
