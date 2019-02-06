@@ -1,13 +1,19 @@
 CC=g++
 FLAGS=-std=c++11 -c -O3
 
-all: rmsle f1 accuracy log_loss hit hit_2 wrmse roc_auc balanced_accuracy rmape mae rmse
+all: rmsle f1 accuracy log_loss hit hit_2 wrmse roc_auc balanced_accuracy rmape mae rmse mapk
 
 log_loss: log_loss.o utils.o
 	$(CC) log_loss.o utils.o -o log_loss
 
 log_loss.o: log_loss.cpp
 	$(CC) $(FLAGS) log_loss.cpp
+
+mapk: mapk.o
+	$(CC) json.o -o json_tst
+
+mapk.o: mapk.cpp
+	$(CC) $(FLAGS) mapk.cpp
 
 hit: hit.o utils.o
 	$(CC) hit.o utils.o -o hit
