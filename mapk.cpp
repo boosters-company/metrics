@@ -8,6 +8,7 @@
 using namespace std;
 
 
+
 double avg_precision_at_k(nlohmann::json y_pred, nlohmann::json y_true, int k) {
     double count = 0;
     double avp = 0;
@@ -23,11 +24,6 @@ double avg_precision_at_k(nlohmann::json y_pred, nlohmann::json y_true, int k) {
         }
     }
     if(y_true.size() < k) k = y_true.size();
-    if(avp/k == 1) {
-        cout << count << " " << k << " " << avp <<  " " << avp/k <<endl;
-        cout << y_pred << endl;
-        cout << y_true << endl;
-    }
     return avp/k;
 }
 
@@ -38,7 +34,6 @@ double mapk(nlohmann::json y_pred, nlohmann::json y_true) {
     double pr;
     for (auto& i : y_true.items()) {
         pr = avg_precision_at_k(y_pred[i.key()], i.value(), 20);
-        if(pr > mm) mm = pr;
         m += pr/N;
     }
     return m;
@@ -51,12 +46,10 @@ int main(int argc, char* argv[]) {
     in2.open("public_test_dict.json", ifstream::in);
     nlohmann::json j1, j2;
     in1 >> j1;
-    cout << "Loaded first file." << endl;
 
     in2 >> j2;
-    cout << "Loaded second file." << endl;
 
-    cout << mapk(j1, j2) << endl;
+    cout << "ok:"<< mapk(j1, j2) << endl;
 
     return 0;
 }

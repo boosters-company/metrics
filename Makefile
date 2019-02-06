@@ -10,7 +10,7 @@ log_loss.o: log_loss.cpp
 	$(CC) $(FLAGS) log_loss.cpp
 
 mapk: mapk.o
-	$(CC) json.o -o json_tst
+	$(CC) mapk.o -o mapk
 
 mapk.o: mapk.cpp
 	$(CC) $(FLAGS) mapk.cpp
