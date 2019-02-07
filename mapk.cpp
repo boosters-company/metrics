@@ -21,6 +21,7 @@ double avg_precision_at_k(nlohmann::json y_pred, nlohmann::json y_true, int k) {
 
         count += s.count(v2[i]);
         if(s.count(v2[i]) != 0) {
+            s.erase(v2[i]);
             avp += count/(i + 1);
         }
     }
