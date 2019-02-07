@@ -43,8 +43,8 @@ double mapk(nlohmann::json y_pred, nlohmann::json y_true) {
 int main(int argc, char* argv[]) {
 
     ifstream in1, in2;
-    in1.open("sample_answer.json", ifstream::in);
-    in2.open("public_test_dict.json", ifstream::in);
+    in1.open(argv[2], ifstream::in);
+    in2.open(argv[1], ifstream::in);
     nlohmann::json j1, j2;
     in1 >> j1;
 
