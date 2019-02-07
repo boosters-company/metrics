@@ -45,7 +45,7 @@ int main(int argc, char* argv[]) {
 
     ifstream in1, in2;
     in1.open(argv[2], ifstream::in);
-    in2.open(argv[1], ifstream::in);
+    in2.open(argv[3], ifstream::in);
     nlohmann::json j1, j2;
     in1 >> j1;
 
