@@ -12,12 +12,13 @@ using namespace std;
 double avg_precision_at_k(nlohmann::json y_pred, nlohmann::json y_true, int k) {
     double count = 0;
     double avp = 0;
+    int N = k;
     vector<int> v = y_true.get<vector<int>>();
     set<int> s(v.begin(), v.end());
     vector<int> v2 = y_pred.get<vector<int>>();
-    if(y_pred.size() < k) k = y_pred.size();
+    if(y_pred.size() < k) N = y_pred.size();
     if(k == 0) return 0;
-    for(int i = 0; i < k; i++) {
+    for(int i = 0; i < N; i++) {
 
         count += s.count(v2[i]);
         if(s.count(v2[i]) != 0) {
