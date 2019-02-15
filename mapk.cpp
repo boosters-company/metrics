@@ -36,7 +36,11 @@ double mapk(nlohmann::json y_pred, nlohmann::json y_true) {
     double mm = 0;
     double pr;
     for (auto& i : y_true.items()) {
-        pr = avg_precision_at_k(y_pred[i.key()], i.value(), 20);
+        if (y_pred.find(i.key()) != y_pred.end()) {
+            pr = avg_precision_at_k(y_pred[i.key()], i.value(), 20);
+        } else {
+            pr = 0;
+        }
         m += pr/N;
     }
     return m;
