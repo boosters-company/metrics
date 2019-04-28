@@ -33,6 +33,7 @@ rmsle: rmsle.o utils.o
 rmsle.o: rmsle.cpp
 	$(CC) $(FLAGS) rmsle.cpp
 
+
 mae: mae.o utils.o
 	$(CC) mae.o utils.o -o mae
 
@@ -44,6 +45,12 @@ rmape: rmape.o utils.o
 
 rmape.o: rmape.cpp
 	$(CC) $(FLAGS) rmape.cpp
+
+eer: eer.o utils.o
+	$(CC) eer.o utils.o -o eer
+
+eer.o: eer.cpp
+	$(CC) $(FLAGS) eer.cpp
 
 wrmse: wrmse.o utils.o
 	$(CC) wrmse.o utils.o -o wrmse
