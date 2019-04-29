@@ -11,14 +11,16 @@ int main(int argc, char* argv[]) {
     
     int *ind;
     unordered_map<int, double> table1, transformed_table;
-    unordered_map<int, double> table2;
+    unordered_map<string, double> mapping, table2;
     
 
     read_data_csv(string(argv[1]), &table1);
-    read_data_csv(string(argv[2]), &table2);
+    read_mapping(string(argv[2]), &table2);
+    read_mapping(string(argv[4]), &mapping);
+    map_data(mapping, table2, &transformed_table);
     ind = read_indexes(string(argv[3]));
 
-    cout << "ok: " << eer(&table1, &table2, ind, SIZE) << endl;
+    cout << "ok: " << eer(&table1, &transformed_table, ind, SIZE) << endl;
     
     delete ind, table1, table2;
     return 0;
