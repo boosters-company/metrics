@@ -46,7 +46,7 @@ double eer(unordered_map<int, double> *y_true, unordered_map<int, double> *y_pre
         }
     }
     
-    sort(input.begin(), input.end(), sort_f);
+    stable_sort(input.begin(), input.end(), sort_f);
     double ones = 0;
     double zeros = 0;
     for(int i = 0; i < size; i++) {
@@ -64,19 +64,28 @@ double eer(unordered_map<int, double> *y_true, unordered_map<int, double> *y_pre
     int fps = 0;
     double prevtps, prevfps;
     prevtps = prevfps = -1;
+
     for(int i = 0; i < size; i++) {
-        prob = input.at(i).second;
-        idx = input.at(i).first;
-        tps += (*y_true)[idx];
-        fps += 1 - (*y_true)[idx];
-        if(double(tps/ones) >= 1 - double(fps/zeros)) {
+        while ( true) {
+            prob = input.at(i).second;
+            idx = input.at(i).first;
+            tps += (*y_true)[idx];
+            fps += 1 - (*y_true)[idx];
+            prevfps = fps;
+            prevtps = tps;
+            if(i == size - 1) break;
+            if(abs(prob - input.at(i+1).second) < 1e-8) {
+                i++;
+            } else {
+                break;
+            }
+        }
+        if(double(tps/ones) > 1 - double(fps/zeros)) {
             break;
         }
-        prevfps = fps;
-        prevtps = tps;
     }
-    if(tps == prevtps) return 1 - double(tps/ones);
-    if(fps == prevfps) return double(fps/zeros);
+    if(tps == prevtps) return (1 - double(tps/ones))*0.5 + (double(fps/zeros))*0.5;
+    if(fps == prevfps) return 1 - double(fps/zeros);
     return -1;
 }
 
