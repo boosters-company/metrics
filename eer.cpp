@@ -80,7 +80,7 @@ double eer(unordered_map<int, double> *y_true, unordered_map<int, double> *y_pre
                 break;
             }
         }
-        if(double(tps/ones) > 1 - double(fps/zeros)) {
+        if(double(tps/ones) >= 1 - double(fps/zeros)) {
             break;
         }
     }
