@@ -1,7 +1,7 @@
 CC=g++
 FLAGS=-std=c++11 -c -O3
 
-all: rmsle f1 accuracy log_loss hit hit_2 wrmse roc_auc balanced_accuracy rmape mae rmse mapk
+all: rmsle f1 accuracy log_loss hit hit_2 wrmse roc_auc balanced_accuracy rmape mae rmse mapk eer
 
 log_loss: log_loss.o utils.o
 	$(CC) log_loss.o utils.o -o log_loss
