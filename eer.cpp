@@ -74,16 +74,18 @@ double eer(unordered_map<int, double> *y_true, unordered_map<int, double> *y_pre
             prevfps = fps;
             prevtps = tps;
             if(i == size - 1) break;
-            if(abs(prob - input.at(i+1).second) < 1e-8) {
+            if(abs(prob - input.at(i+1).second) < 1e-16) {
                 i++;
             } else {
                 break;
             }
         }
         if(double(tps/ones) >= 1 - double(fps/zeros)) {
+            cout << i << endl;
             break;
         }
     }
+    cout << tps << " " << fps << endl;
     if(tps == prevtps) return (1 - double(tps/ones))*0.5 + (double(fps/zeros))*0.5;
     if(fps == prevfps) return 1 - double(fps/zeros);
     return -1;

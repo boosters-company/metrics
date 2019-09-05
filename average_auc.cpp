@@ -10,21 +10,31 @@ double roc_auc(unordered_map<int, double> *y_true, unordered_map<int, double> *y
 int main(int argc, char* argv[]) {
     
     int *ind;
-    unordered_map<int, double> table1, transformed_table;
-    unordered_map<string, double> mapping, table2;
+    vector<unordered_map<int, double>> table1;
+    vector<unordered_map<int, double>> table2;
+    //unordered_map<string, double> mapping, table2;
     
 
-    read_data_csv(string(argv[1]), &table1);
-    read_mapping(string(argv[2]), &table2);
-    read_mapping(string(argv[4]), &mapping);
-    map_data(mapping, table2, &transformed_table);
+    read_data_csv_n_cols(string(argv[1]), &table1, 6);
+    read_data_csv_n_cols(string(argv[2]), &table2, 6);
+
+    //read_mapping(string(argv[2]), &table2);
+    //read_mapping(string(argv[4]), &mapping);
+    //map_data(mapping, table2, &transformed_table);
     ind = read_indexes(string(argv[3]));
 
-    cout << "ok: " << roc_auc(&table1, &transformed_table, ind, SIZE) << endl;
-    
-    delete ind, table1, table2;
+    double ans1 = roc_auc(&table1[0], &table2[0], ind, SIZE);
+    double ans2 = roc_auc(&table1[1], &table2[1], ind, SIZE);
+    double ans3 = roc_auc(&table1[2], &table2[2], ind, SIZE);
+    double ans4 = roc_auc(&table1[3], &table2[3], ind, SIZE);
+    double ans5 = roc_auc(&table1[4], &table2[4], ind, SIZE);
+    //cout << table2[0][2004] << endl;
+    cout << "auc: " << ans1 << " " << ans2 << " " << ans3 << " " << ans4 << " " << ans5 << endl;
+    cout << "ok: " << 0.2*(ans1 + ans2 + ans3 + ans4 + ans5) << endl;
+
     return 0;
 }
+
 
 bool sort_f(const pair<int, double> &a, const pair<int, double> &b) {
     return (a.second < b.second);

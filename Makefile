@@ -1,7 +1,7 @@
 CC=g++
 FLAGS=-std=c++11 -c -O3
 
-all: rmsle f1 accuracy log_loss hit hit_2 wrmse roc_auc balanced_accuracy rmape mae rmse mapk eer
+all: rmsle f1 accuracy log_loss hit hit_2 wrmse roc_auc balanced_accuracy rmape mae rmse mapk eer average_auc
 
 log_loss: log_loss.o utils.o
 	$(CC) log_loss.o utils.o -o log_loss
@@ -84,6 +84,12 @@ balanced_accuracy: balanced_accuracy.o utils.o
 
 balanced_accuracy.o: balanced_accuracy.cpp
 	$(CC) $(FLAGS) balanced_accuracy.cpp
+
+average_auc: average_auc.o utils.o
+	$(CC) average_auc.o utils.o -o average_auc
+
+average_auc.o: average_auc.cpp
+	$(CC) $(FLAGS) average_auc.cpp
 
 roc_auc: roc_auc.o utils.o
 	$(CC) roc_auc.o utils.o -o auc
