@@ -29,7 +29,7 @@ int main(int argc, char* argv[]) {
     double ans4 = roc_auc(&table1[3], &table2[3], ind, SIZE);
     double ans5 = roc_auc(&table1[4], &table2[4], ind, SIZE);
     //cout << table2[0][2004] << endl;
-    cout << "auc: " << ans1 << " " << ans2 << " " << ans3 << " " << ans4 << " " << ans5 << endl;
+    //cout << "auc: " << ans1 << " " << ans2 << " " << ans3 << " " << ans4 << " " << ans5 << endl;
     cout << "ok: " << 0.2*(ans1 + ans2 + ans3 + ans4 + ans5) << endl;
 
     return 0;
