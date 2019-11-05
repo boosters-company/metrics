@@ -140,7 +140,7 @@ void read_data_csv_n_cols(string path, vector<unordered_map<int, double>> *data,
 
             }
     }
-    cout << "error:Out of range: " << (*data).size() << endl;
+    //cout << "error:Out of range: " << (*data).size() << endl;
     in.close();
 }
 
