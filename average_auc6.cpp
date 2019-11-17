@@ -24,10 +24,11 @@ int main(int argc, char* argv[]) {
     if(ind_type.substr(lenS-3, 3) != string("csv")) {
         cout << "bad format of index file name: " << ind_type << endl;
     } else {
+        // fix hardcoded paths
         if(ind_type.substr(lenS-4-3, 3) == string("pub")) {
-            farg = string("pub");
+            farg = string("/home/workspace/boosters.pro/backend/metrics/metrics") + string("pub");
         } else {
-            farg = string("priv");
+            farg = string("/home/workspace/boosters.pro/backend/metrics/metrics") + string("priv");
         }
     }
     ind1 = read_indexes(farg + "1.csv");
