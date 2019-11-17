@@ -28,8 +28,8 @@ void read_data_csv(string path, unordered_map<int, double> *data) {
                 ind = stoi(cell);
                 } catch(const invalid_argument& ia) {
 
-                    cout << "error:Invalid argumaent: " << cell << endl ;
-                    throw "error:Invalid argumaent";
+                    cout << "error:Invalid argument: " << cell << endl ;
+                    throw "error:Invalid argument";
 
                 } catch(const out_of_range& oor) {
 
@@ -42,13 +42,13 @@ void read_data_csv(string path, unordered_map<int, double> *data) {
                 val = stod(cell);
                 } catch(const invalid_argument& ia) {
 
-                    cout << "error:Invalid argumaent: " << cell << endl ;
-                    throw "error:Invalid argumaent";
+                    cout << "error:Invalid argument: " << cell << endl ;
+                    throw "error:Invalid argument";
 
                 } catch(const out_of_range& oor) {
 
                     cout << "error:Out of range: " << cell << endl;
-                    throw "error:Invalid argumaent";
+                    throw "error:Invalid argument";
 
                 }
                 (*data)[ind] = val;
@@ -70,7 +70,6 @@ void read_data_csv(string path, unordered_map<int, double> *data) {
 }
 
 void read_data_csv_n_cols(string path, vector<unordered_map<int, double>> *data, int N) {
-
     char delim;
     ifstream in;
     in.open(path, ifstream::in);
@@ -102,8 +101,8 @@ void read_data_csv_n_cols(string path, vector<unordered_map<int, double>> *data,
                 ind = stoi(cell);
                 } catch(const invalid_argument& ia) {
 
-                    cout << "error:Invalid argumaent: " << cell << endl ;
-                    throw "error:Invalid argumaent";
+                    cout << "error:Invalid argument ncols: " << line << endl ;
+                    throw "error:Invalid argument";
 
                 } catch(const out_of_range& oor) {
 
@@ -116,13 +115,13 @@ void read_data_csv_n_cols(string path, vector<unordered_map<int, double>> *data,
                 val = stod(cell);
                 } catch(const invalid_argument& ia) {
 
-                    cout << "error:Invalid argumaent: " << cell << endl ;
-                    throw "error:Invalid argumaent";
+                    cout << "error:Invalid argument ncols: " << line << endl ;
+                    throw "error:Invalid argument";
 
                 } catch(const out_of_range& oor) {
 
                     cout << "error:Out of range: " << cell << endl;
-                    throw "error:Invalid argumaent";
+                    throw "error:Invalid argument";
 
                 }
                 (*data)[(state % N) - 1][ind] = val;
@@ -141,7 +140,7 @@ void read_data_csv_n_cols(string path, vector<unordered_map<int, double>> *data,
             }
     }
     //cout << "error:Out of range: " << (*data).size() << endl;
-    in.close();
+    in.close(); 
 }
 
 void read_mapping(string path, unordered_map<string, double> *data) {
@@ -175,13 +174,13 @@ void read_mapping(string path, unordered_map<string, double> *data) {
                 val = stod(cell);
                 } catch(const invalid_argument& ia) {
 
-                    cout << "error:Invalid argumaent: " << cell << endl ;
-                    throw "error:Invalid argumaent";
+                    cout << "error:Invalid argument: " << cell << endl ;
+                    throw "error:Invalid argument";
 
                 } catch(const out_of_range& oor) {
 
                     cout << "error:Out of range: " << cell << endl;
-                    throw "error:Invalid argumaent";
+                    throw "error:Invalid argument";
 
                 }
                 (*data)[ind] = val;
@@ -226,8 +225,8 @@ void read_data_coord(string path, unordered_map<string, coord> *data) {
                 ind = cell;
                 } catch(const invalid_argument& ia) {
 
-                    cout << "error:Invalid argumaent: " << cell << endl ;
-                    throw "error:Invalid argumaent";
+                    cout << "error:Invalid argument: " << cell << endl ;
+                    throw "error:Invalid argument";
 
                 } catch(const out_of_range& oor) {
 
@@ -240,13 +239,13 @@ void read_data_coord(string path, unordered_map<string, coord> *data) {
                 x = stod(cell);
                 } catch(const invalid_argument& ia) {
 
-                    cout << "error:Invalid argumaent: " << cell << endl ;
-                    throw "error:Invalid argumaent";
+                    cout << "error:Invalid argument: " << cell << endl ;
+                    throw "error:Invalid argument";
 
                 } catch(const out_of_range& oor) {
 
                     cout << "error:Out of range: " << cell << endl;
-                    throw "error:Invalid argumaent";
+                    throw "error:Invalid argument";
 
                 }
                 (*data)[ind].lat = x;
@@ -255,13 +254,13 @@ void read_data_coord(string path, unordered_map<string, coord> *data) {
                 y = stod(cell);
                 } catch(const invalid_argument& ia) {
 
-                    cout << "error:Invalid argumaent: " << cell << endl ;
-                    throw "error:Invalid argumaent";
+                    cout << "error:Invalid argument: " << cell << endl ;
+                    throw "error:Invalid argument";
 
                 } catch(const out_of_range& oor) {
 
                     cout << "error:Out of range: " << cell << endl;
-                    throw "error:Invalid argumaent";
+                    throw "error:Invalid argument";
 
                 }
                 (*data)[ind].lon = y;
@@ -306,8 +305,8 @@ void read_data_coord_2(string path, unordered_map<string, coord> *data1, unorder
                 ind = cell;
                 } catch(const invalid_argument& ia) {
 
-                    cout << "error:Invalid argumaent: " << cell << endl ;
-                    throw "error:Invalid argumaent";
+                    cout << "error:Invalid argument: " << cell << endl ;
+                    throw "error:Invalid argument";
 
                 } catch(const out_of_range& oor) {
 
@@ -320,13 +319,13 @@ void read_data_coord_2(string path, unordered_map<string, coord> *data1, unorder
                 x = stod(cell);
                 } catch(const invalid_argument& ia) {
 
-                    cout << "error:Invalid argumaent: " << cell << endl ;
-                    throw "error:Invalid argumaent";
+                    cout << "error:Invalid argument: " << cell << endl ;
+                    throw "error:Invalid argument";
 
                 } catch(const out_of_range& oor) {
 
                     cout << "error:Out of range: " << cell << endl;
-                    throw "error:Invalid argumaent";
+                    throw "error:Invalid argument";
 
                 }
                 (*data1)[ind].lat = x;
@@ -335,13 +334,13 @@ void read_data_coord_2(string path, unordered_map<string, coord> *data1, unorder
                 y = stod(cell);
                 } catch(const invalid_argument& ia) {
 
-                    cout << "error:Invalid argumaent: " << cell << endl ;
-                    throw "error:Invalid argumaent";
+                    cout << "error:Invalid argument: " << cell << endl ;
+                    throw "error:Invalid argument";
 
                 } catch(const out_of_range& oor) {
 
                     cout << "error:Out of range: " << cell << endl;
-                    throw "error:Invalid argumaent";
+                    throw "error:Invalid argument";
 
                 }
                 (*data1)[ind].lon = y;
@@ -350,13 +349,13 @@ void read_data_coord_2(string path, unordered_map<string, coord> *data1, unorder
                 x = stod(cell);
                 } catch(const invalid_argument& ia) {
 
-                    cout << "error:Invalid argumaent: " << cell << endl ;
-                    throw "error:Invalid argumaent";
+                    cout << "error:Invalid argument: " << cell << endl ;
+                    throw "error:Invalid argument";
 
                 } catch(const out_of_range& oor) {
 
                     cout << "error:Out of range: " << cell << endl;
-                    throw "error:Invalid argumaent";
+                    throw "error:Invalid argument";
 
                 }
                 (*data2)[ind].lat = x;
@@ -365,13 +364,13 @@ void read_data_coord_2(string path, unordered_map<string, coord> *data1, unorder
                 y = stod(cell);
                 } catch(const invalid_argument& ia) {
 
-                    cout << "error:Invalid argumaent: " << cell << endl ;
-                    throw "error:Invalid argumaent";
+                    cout << "error:Invalid argument: " << cell << endl ;
+                    throw "error:Invalid argument";
 
                 } catch(const out_of_range& oor) {
 
                     cout << "error:Out of range: " << cell << endl;
-                    throw "error:Invalid argumaent";
+                    throw "error:Invalid argument";
 
                 }
                 (*data2)[ind].lon = y;
