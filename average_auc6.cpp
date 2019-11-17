@@ -18,17 +18,29 @@ int main(int argc, char* argv[]) {
     //read_mapping(string(argv[2]), &table2);
     //read_mapping(string(argv[4]), &mapping);
     //map_data(mapping, table2, &transformed_table);
-    ind1 = read_indexes(string(argv[3]) + "1.csv");
+    string ind_type = string(argv[3]);
+    string farg;
+    int lenS = ind_type.length();
+    if(ind_type.substr(lenS-3, 3) != string("csv")) {
+        cout << "bad format of index file name: " << ind_type << endl;
+    } else {
+        if(ind_type.substr(lenS-4-3, 3) == string("pub")) {
+            farg = string("pub");
+        } else {
+            farg = string("priv");
+        }
+    }
+    ind1 = read_indexes(farg + "1.csv");
     int size1 = SIZE;
-    ind2 = read_indexes(string(argv[3]) + "2.csv");
+    ind2 = read_indexes(farg + "2.csv");
     int size2 = SIZE;
-    ind3 = read_indexes(string(argv[3]) + "3.csv");
+    ind3 = read_indexes(farg + "3.csv");
     int size3 = SIZE;
-    ind4 = read_indexes(string(argv[3]) + "4.csv");
+    ind4 = read_indexes(farg + "4.csv");
     int size4 = SIZE;
-    ind5 = read_indexes(string(argv[3]) + "5.csv");
+    ind5 = read_indexes(farg + "5.csv");
     int size5 = SIZE;
-    ind6 = read_indexes(string(argv[3]) + "6.csv");
+    ind6 = read_indexes(farg + "6.csv");
     int size6 = SIZE;
 
     double ans1 = roc_auc(&table1[0], &table2[0], ind1, size1);
