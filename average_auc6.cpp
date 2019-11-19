@@ -58,7 +58,7 @@ int main(int argc, char* argv[]) {
     //cout << "auc6 " << ans6 << endl;
     //cout << table2[0][2004] << endl;
     //cout << "auc: " << ans1 << " " << ans2 << " " << ans3 << " " << ans4 << " " << ans5 << " " << ans6 << endl;
-    cout << "ok: " << 1./6*(ans1 + ans2 + ans3 + ans4 + ans5 + ans6) << endl;
+    cout << "ok: " << 0.22*ans1 + 0.22*ans2 + 0.08*ans3 + 0.14*ans4 + 0.19*ans5 + 0.15*ans6 << endl;
 
     return 0;
 }
