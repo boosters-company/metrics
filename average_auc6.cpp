@@ -12,8 +12,8 @@ int main(int argc, char* argv[]) {
     vector<unordered_map<int, double>> table1;
     vector<unordered_map<int, double>> table2;
     //unordered_map<string, double> mapping, table2;
-    read_data_csv_n_cols(string(argv[1]), &table1, 7);
-    read_data_csv_n_cols(string(argv[2]), &table2, 7);
+    read_data_csv_n_cols(string(argv[1]), &table1, 6);
+    read_data_csv_n_cols(string(argv[2]), &table2, 6);
 
     //read_mapping(string(argv[2]), &table2);
     //read_mapping(string(argv[4]), &mapping);
@@ -41,8 +41,8 @@ int main(int argc, char* argv[]) {
     int size4 = SIZE;
     ind5 = read_indexes(farg + "5.csv");
     int size5 = SIZE;
-    ind6 = read_indexes(farg + "6.csv");
-    int size6 = SIZE;
+    //ind6 = read_indexes(farg + "6.csv");
+    //int size6 = SIZE;
 
     double ans1 = roc_auc(&table1[0], &table2[0], ind1, size1);
     //cout << "auc1 " << ans1 << endl;
@@ -54,11 +54,11 @@ int main(int argc, char* argv[]) {
     //cout << "auc4 " << ans4 << endl;
     double ans5 = roc_auc(&table1[4], &table2[4], ind5, size5);
     //cout << "auc5 " << ans5 << endl;
-    double ans6 = roc_auc(&table1[5], &table2[5], ind6, size6);
+    //double ans6 = roc_auc(&table1[5], &table2[5], ind6, size6);
     //cout << "auc6 " << ans6 << endl;
     //cout << table2[0][2004] << endl;
     //cout << "auc: " << ans1 << " " << ans2 << " " << ans3 << " " << ans4 << " " << ans5 << " " << ans6 << endl;
-    cout << "ok: " << 0.22*ans1 + 0.22*ans2 + 0.08*ans3 + 0.14*ans4 + 0.19*ans5 + 0.15*ans6 << endl;
+    cout << "ok: " << 0.28*ans1 + 0.27*ans2 + 0.09*ans3 + 0.18*ans4 + 0.18*ans5<< endl;
 
     return 0;
 }
