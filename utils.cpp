@@ -10,6 +10,7 @@ void read_data_csv(string path, unordered_map<int, double> *data) {
     in >> line;
     int ind;
     double val;
+    int counter;
 
     if(line.find(',') != string::npos) delim = ',';
     if(line.find('\t') != string::npos) delim = '\t';
@@ -21,8 +22,12 @@ void read_data_csv(string path, unordered_map<int, double> *data) {
 
 
         stringstream line_stream(line);
+        counter = 0;
         while(getline(line_stream, cell, delim)) {
-
+            if(counter > 1) {
+                cout << "error: number of columns is more then 2 " << counter ;
+                throw "error: number of columns is more then 2";
+            }
             if(state % 2 == 0) {
                 try {
                 ind = stoi(cell);
@@ -55,7 +60,7 @@ void read_data_csv(string path, unordered_map<int, double> *data) {
             }
 
             state++;
-
+            counter++;
         }
 
         if(cell.empty() && !line_stream) {
