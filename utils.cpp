@@ -25,7 +25,7 @@ void read_data_csv(string path, unordered_map<int, double> *data) {
         counter = 0;
         while(getline(line_stream, cell, delim)) {
             if(counter > 1) {
-                cout << "error: number of columns is more then 2 " << counter ;
+                cout << "error: number of columns is more then 2";
                 throw "error: number of columns is more then 2";
             }
             if(state % 2 == 0) {
