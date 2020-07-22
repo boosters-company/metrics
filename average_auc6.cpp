@@ -26,9 +26,9 @@ int main(int argc, char* argv[]) {
     } else {
         // fix hardcoded paths
         if(ind_type.substr(lenS-4-3, 3) == string("pub")) {
-            farg = string("/home/workspace/boosters.pro/backend/metrics/metrics/") + string("pub");
+            farg = string("old/") + string("pub");
         } else {
-            farg = string("/home/workspace/boosters.pro/backend/metrics/metrics/") + string("priv");
+            farg = string("old/") + string("priv");
         }
     }
     ind1 = read_indexes(farg + "1.csv");
