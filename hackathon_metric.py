@@ -27,7 +27,7 @@ user['x'] = user['x'].astype(int)
 user['y'] = user['y'].astype(int)
 
 idx = pd.read_csv(sys.argv[3])
-z = np.load('all_data.npy')
+z = np.load('/home/workspace/boosters.pro/backend/metrics/metrics/all_data.npy')
 
 user = user.set_index('x')
 ans = ans.set_index('x')
