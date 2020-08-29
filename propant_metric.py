@@ -35,6 +35,6 @@ idx = set(pd.read_csv(sys.argv[3]).ImageId.values)
 
 
 
-res = contest_metric(ans[ans.ImageId.isin(idx)], sub[sub.ImageId.isin(idx)])
+res, _, _ = contest_metric(ans[ans.ImageId.isin(idx)], sub[sub.ImageId.isin(idx)])
 
 print("ok: {}".format(res))

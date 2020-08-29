@@ -25,14 +25,14 @@ fraction_sievs = {
         '20/40_pdcpd_bash_lab' : {'all' : ['12', '16', '18', '20', '25', '30', '40'], 'main': ['25', '30', '40'], 'rough':'12' }
 }
 
-true_cols = ['7_true', '8_true',
+true_cols = ['6_true','7_true', '8_true',
            '10_true', '12_true', '14_true', '16_true', '18_true', '20_true',
            '25_true', '30_true', '35_true', '40_true', '45_true', '50_true',
            '60_true', '70_true', '80_true', '100_true', 'pan_true']
-pred_cols = ['7_pred', '8_pred', '10_pred', '12_pred', '14_pred', '16_pred',
+pred_cols = ['6_pred', '7_pred', '8_pred', '10_pred', '12_pred', '14_pred', '16_pred',
            '18_pred', '20_pred', '25_pred', '30_pred', '35_pred', '40_pred',
            '45_pred', '50_pred', '60_pred', '70_pred', '80_pred', '100_pred','pan_pred']
-cols =  ['7', '8', '10', '12', '14', '16', '18', '20', '25', '30',
+cols =  ['6', '7', '8', '10', '12', '14', '16', '18', '20', '25', '30',
        '35', '40', '45', '50', '60', '70', '80', '100', 'pan']
 
 
@@ -69,7 +69,7 @@ def metric(bin_hist_sub_df, prop_count_sub_df, a=0.6, b=0.4):
     chi2 = bin_hist_sub_df['chi2'].mean()
     prop_count_sub_df['mape'] = np.abs(prop_count_sub_df['prop_count_true'] - prop_count_sub_df['prop_count_pred']) / prop_count_sub_df['prop_count_true']
     mape = prop_count_sub_df['mape'].mean()
-    return a*chi2 + b*mape
+    return a*chi2 + b*mape, chi2, mape
 
 def get_bins_from_granules(x):
     """Развернёт бины для каждого изображения по столбцам"""
@@ -163,8 +163,11 @@ def sizes_to_sieves(sizes, sive_diam, sieves_names):
     sizes_ = np.sort(sizes)
     sieve_bins = np.zeros_like(sizes_)
     
-    for diam, name in zip(sive_diam[::-1], sieves_names[::-1]):
-        sieve_bins[sizes_> diam] = name
+    #for diam, name in zip(sive_diam[::-1], sieves_names[::-1]):
+    #    sieve_bins[sizes_> diam] = name
+
+    for diam, name in zip(sive_diam, sieves_names):
+        sieve_bins[sizes_<= diam] = name
         
     return sizes_, sieve_bins
 
@@ -179,4 +182,3 @@ def sizes_to_sieve_hist(sizes, sive_diam, sieves_names):
         bins_hieght[name] = np.sum(sieve_bins==float(name))/sizes.shape[0]
     bins_hieght['pan'] = bins_hieght.pop(0)
     return bins_hieght
-
