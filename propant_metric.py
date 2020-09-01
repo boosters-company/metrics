@@ -16,5 +16,5 @@ if len(set(idx).intersection(set(sub_tu.ImageId))) != len(idx):
     print('Error: missing ImageId in submit', len(sub_tu.ImageId.unique()))
 else:
     res, chi2, mape = contest_metric(ans_tu, sub_tu)
-    print(chi2, mape)
+    #print(chi2, mape)
     print("ok: {}".format(res))
