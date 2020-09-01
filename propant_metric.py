@@ -11,8 +11,9 @@ idx = set(pd.read_csv(sys.argv[3]).ImageId.values)
 # deal with not filled images
 ans_tu = ans#[ans.ImageId.isin(idx)]
 sub_tu = sub#[sub.ImageId.isin(idx)]
-if len(sub_tu.ImageId.unique()) != len(idx):
-    print('Error: missing ImageId in submit')
+
+if len(set(idx).intersection(set(sub_tu.ImageId))) != len(idx):
+    print('Error: missing ImageId in submit', len(sub_tu.ImageId.unique()))
 else:
     res, chi2, mape = contest_metric(ans_tu, sub_tu)
     print(chi2, mape)
