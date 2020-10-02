@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import numpy as np
 import pandas as pd
 
@@ -10,7 +9,6 @@ sive_diam = np.array(sive_diam)
 
 sieves_names_pan = [6,7,8,10,12,14,16,18,20,25,30,35,40,45,50,60,70,80,100,0]
 sive_diam_pan = np.array([3.35,2.8, 2.36, 2, 1.7, 1.4, 1.18, 1, 0.85, 0.71, 0.6, 0.5, 0.425, 0.355, 0.3, 0.25, 0.212, 0.18, 0.15,0])
-#diams_exended = np.concatenate([[3.35],sive_diam])
 
 fraction_sievs = {
         '10/14' : {'all': ['7', '10', '12', '14', '16', '18', '20'], 'main': ['12', '14'], 'rough':'7' },
@@ -111,8 +109,7 @@ def prepare_sieves_hist_df(submission_df, test_labels_df_in, result_bins=None):
         result_bins.rename(lambda x: str(x) + '_pred', axis='columns',inplace=True)
         result_bins.reset_index(inplace=True)
     test_labels_df.rename(lambda x: str(x) + '_true' if x in cols else x, axis='columns', inplace=True)
-#     for col in true_cols:
-#         test_labels_df[col] = test_labels_df[col]/100
+
     sieves_hist_df = pd.merge(result_bins,test_labels_df, on='ImageId')
     sieves_hist_df = sieves_hist_df[~sieves_hist_df['pan_true'].isna()].drop('prop_count', axis=1).copy()
     return sieves_hist_df
@@ -144,7 +141,7 @@ def postprocess_dists(true, pred, sieve_mask):
 
     pred[-1] = np.sum(pred[non_zero_bins[-1][0]+1: ])
 
-    pred[np.argwhere(true==0)[:-1]] = 0.0
+    pred[np.argwhere(sieve_mask==0)[:-1]] = 0.0
     true[-1] = np.maximum(0.0, 1.0 - np.sum(true[:-1]))
     return true, pred
 
@@ -162,9 +159,6 @@ def sizes_to_sieves(sizes, sive_diam, sieves_names):
     """
     sizes_ = np.sort(sizes)
     sieve_bins = np.zeros_like(sizes_)
-    
-    #for diam, name in zip(sive_diam[::-1], sieves_names[::-1]):
-    #    sieve_bins[sizes_> diam] = name
 
     for diam, name in zip(sive_diam, sieves_names):
         sieve_bins[sizes_<= diam] = name
@@ -182,3 +176,4 @@ def sizes_to_sieve_hist(sizes, sive_diam, sieves_names):
         bins_hieght[name] = np.sum(sieve_bins==float(name))/sizes.shape[0]
     bins_hieght['pan'] = bins_hieght.pop(0)
     return bins_hieght
+
