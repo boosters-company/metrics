@@ -16,6 +16,7 @@ def convert(model_path):
     r = subprocess.run(['python', '-m', 'MNN.tools.mnnconvert',
                         '-f', 'ONNX', '--modelFile', model_path, '--MNNModel',
                         base + f"/{filename}"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    #print(r.returncode)
     return r.returncode == 0, base + f"/{filename}"
 
 
@@ -27,7 +28,7 @@ def estimate(model):
         session = interpreter.createSession()
         input_tensor = interpreter.getSessionInput(session)
         shape = input_tensor.getShape()
-        input_np = np.random.uniform(shape).astype(np.float32)
+        input_np = np.random.uniform(size=shape).astype(np.float32)
         tmp_input = MNN.Tensor(shape, MNN.Halide_Type_Float,\
                     input_np, MNN.Tensor_DimensionType_Caffe)
         input_tensor.copyFrom(tmp_input)
@@ -57,6 +58,7 @@ sub_tu = sub[sub.ImageId.isin(idx)]
 
 base = os.path.dirname(sys.argv[1])
 models = glob.glob(base + '/model_*.onnx')
+#print(base)
 converted = []
 converted_models = []
 for model in models:
@@ -66,11 +68,13 @@ for model in models:
 if not all(converted):
     print('Error: converting models to .mnn')
 else:
+    #print(converted)
+    #print(models)
     mean_time = estimate_working_time(converted_models)
-    print('mean_time ', mean_time)
+    #print('mean_time ', mean_time)
     if len(set(idx).intersection(set(sub_tu.ImageId))) != len(idx):
         print('Error: missing ImageId in submit')
     else:
         res, chi2, mape = contest_metric(ans_tu, sub_tu)
         #print(chi2, mape)
-        print("ok: {}".format(res))
+        print("ok: {}".format(res + mean_time/2))
