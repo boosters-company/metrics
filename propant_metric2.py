@@ -56,7 +56,7 @@ idx = set(pd.read_csv(sys.argv[3]).ImageId.values)
 ans_tu = ans[ans.ImageId.isin(idx)]
 sub_tu = sub[sub.ImageId.isin(idx)]
 
-base = os.path.dirname(sys.argv[1])
+base = os.path.dirname(sys.argv[2])
 models = glob.glob(base + '/model_*.onnx')
 #print(base)
 converted = []
