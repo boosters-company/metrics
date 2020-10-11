@@ -42,7 +42,7 @@ def estimate(model):
 
 def estimate_working_time(models):
     times = []
-    for model in models
+    for model in models:
         times.append(estimate(model))
     return np.mean(times)
 
