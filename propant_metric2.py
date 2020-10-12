@@ -45,7 +45,7 @@ def estimate_working_time(models):
     times = []
     for model in models:
         times.append(estimate(model))
-    return np.mean(times)
+    return np.sum(times)
 
 # read files
 ans = pd.read_csv(sys.argv[1])
