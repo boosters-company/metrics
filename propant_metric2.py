@@ -1,7 +1,7 @@
 import pandas as pd
 import numpy as np
 import sys
-from metric_utils import contest_metric
+from metric_utils_mobile import contest_metric
 import glob
 import subprocess
 import os
@@ -77,4 +77,4 @@ else:
     else:
         res, chi2, mape = contest_metric(ans_tu, sub_tu)
         #print(chi2, mape)
-        print("ok: {}".format(res + mean_time/2))
+        print("ok: {}".format(res*0.8 + (mean_time/2)*0.2))
