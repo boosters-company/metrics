@@ -65,7 +65,7 @@ for model in models:
     status, path = convert(model)
     converted.append(status)
     converted_models.append(path)
-if not all(converted):
+if not all(converted) or len(converted) == 0:
     print('Error: converting models to .mnn')
 else:
     #print(converted)
