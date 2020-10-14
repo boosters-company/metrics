@@ -77,4 +77,4 @@ else:
     else:
         res, chi2, mape = contest_metric(ans_tu, sub_tu)
         #print(chi2, mape)
-        print("ok: {}".format(res*0.8 + (mean_time/2)*0.2))
+        print("ok: {}".format(res*0.8 + (mean_time/0.5)*0.2))
