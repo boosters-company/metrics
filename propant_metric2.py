@@ -23,20 +23,25 @@ def convert(model_path):
 def estimate(model):
     times = []
     interpreter = MNN.Interpreter(model)
+    input_tensor = interpreter.getSessionInput(session)
+    shape = input_tensor.getShape()
+    input_np = np.random.uniform(size=shape).astype(np.float32)
+    tmp_input = MNN.Tensor(shape, MNN.Halide_Type_Float,\
+                    input_np, MNN.Tensor_DimensionType_Caffe)
     for i in range(100):
         start_time = time.time()
-        session = interpreter.createSession()
-        input_tensor = interpreter.getSessionInput(session)
-        shape = input_tensor.getShape()
-        input_np = np.random.uniform(size=shape).astype(np.float32)
-        tmp_input = MNN.Tensor(shape, MNN.Halide_Type_Float,\
-                    input_np, MNN.Tensor_DimensionType_Caffe)
+        #session = interpreter.createSession()
+        #input_tensor = interpreter.getSessionInput(session)
+        #shape = input_tensor.getShape()
+        #input_np = np.random.uniform(size=shape).astype(np.float32)
+        #tmp_input = MNN.Tensor(shape, MNN.Halide_Type_Float,\
+        #            input_np, MNN.Tensor_DimensionType_Caffe)
         input_tensor.copyFrom(tmp_input)
         interpreter.runSession(session)
         output_tensor = interpreter.getSessionOutput(session)
-        output_shape = output_tensor.getShape()
-        tmp_output = MNN.Tensor(output_shape, MNN.Halide_Type_Float, np.ones(output_shape).astype(np.float32), MNN.Tensor_DimensionType_Caffe)
-        output_tensor.copyToHostTensor(tmp_output)
+        #output_shape = output_tensor.getShape()
+        #tmp_output = MNN.Tensor(output_shape, MNN.Halide_Type_Float, np.ones(output_shape).astype(np.float32), MNN.Tensor_DimensionType_Caffe)
+        #output_tensor.copyToHostTensor(tmp_output)
         end_time = time.time()
         times.append(end_time - start_time)
     return np.mean(times)
