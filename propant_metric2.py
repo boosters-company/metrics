@@ -23,6 +23,7 @@ def convert(model_path):
 def estimate(model):
     times = []
     interpreter = MNN.Interpreter(model)
+    session = interpreter.createSession()
     input_tensor = interpreter.getSessionInput(session)
     shape = input_tensor.getShape()
     input_np = np.random.uniform(size=shape).astype(np.float32)
