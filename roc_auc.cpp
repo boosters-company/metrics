@@ -20,8 +20,8 @@ int main(int argc, char* argv[]) {
     //read_mapping(string(argv[4]), &mapping);
     //map_data(mapping, table2, &transformed_table);
     ind = read_indexes(string(argv[3]));
-
-    cout << "ok: " << roc_auc(&table1, &table2, ind, SIZE) << endl;
+    double roc = roc_auc(&table1, &table2, ind, SIZE);
+    cout << "ok: " << max(roc, 1 - roc) << endl;
     
     delete ind, table1, table2;
     return 0;
