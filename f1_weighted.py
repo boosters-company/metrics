@@ -18,6 +18,6 @@ idx = idx.iloc[:, 0].values
 if ans.loc[idx].shape[0] != user.loc[idx].shape[0]:
     print('Error: missing client')
 else:
-    res = f1_score(ans.loc[idx], user.loc[idx], average='macro')
+    res = f1_score(ans.loc[idx], user.loc[idx], average='weighted')
 
     print("ok: {}".format(res))
