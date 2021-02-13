@@ -9,7 +9,6 @@ def accuracy_score_n(ans, user, idx, gen):
     user_ = user.loc[idx]
     acc = accuracy_score(ans_, user_)
     acc_t = accuracy_score(ans_[ans_.index.isin(gen)], user_[user_.index.isin(gen)])
-    print(acc_t/acc)
     if acc_t/acc > 0.5:
         return acc
     else:
