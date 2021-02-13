@@ -26,7 +26,7 @@ idx = pd.read_csv(sys.argv[3])
 idx = idx.iloc[:, 0].values
 
 
-gen = pd.read_csv(f'{BASE}/generated_samples.csv')['id']
+gen = pd.read_csv(sys.argv[4])['id']
 
 
 if ans.loc[idx].shape[0] != user.loc[idx].shape[0]:
